@@ -4,3 +4,14 @@
   padding: 2rem;
   text-align: center;
 }
+
+.poke-carta {
+  border: 3px solid #999;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.poke-carta img {
+  width: 200px;
+}

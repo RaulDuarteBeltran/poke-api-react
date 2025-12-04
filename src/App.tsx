@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Pokemon } from "./Pokemon";
 import "./App.css";
+import PokeCarta from "./PokeCarta";
 
 function App() {
-  return <h1>Hola Mundo</h1>;
+  return <PokeCarta id={35} />;
 }
 
 export default App;
