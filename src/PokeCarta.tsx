@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Pokemon } from "./Pokemon";
 
 interface PokeCartaProps {
-  id: number;
+  pokemon: Pokemon;
 }
 
 const pokeEjemplo = new Pokemon(
@@ -13,14 +13,14 @@ const pokeEjemplo = new Pokemon(
 );
 
 function PokeCarta(props: PokeCartaProps) {
-  const { id } = props;
+  const { pokemon } = props;
   return (
     <article className="poke-carta">
-      <h2>{pokeEjemplo.Id}</h2>
-      <img src={pokeEjemplo.SpriteURL} />
-      <h3>{pokeEjemplo.Nombre}</h3>
+      <h2>{pokemon.Id}</h2>
+      <img src={pokemon.SpriteURL} />
+      <h3>{pokemon.Nombre}</h3>
       <>
-        {pokeEjemplo.Tipos.map((tipo) => {
+        {pokemon.Tipos.map((tipo) => {
           return <h4>{tipo}</h4>;
         })}
       </>
