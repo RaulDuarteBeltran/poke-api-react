@@ -1,26 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Pokemon } from "./Pokemon";
 
 interface PokeCartaProps {
   id: number;
 }
 
-const pokeEjemplo = new Pokemon(
-  35,
-  "Clefairy",
-  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/35.png",
-  ["Hada"]
-);
-
 function PokeCarta(props: PokeCartaProps) {
   const { id } = props;
+  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+
+  useEffect(() => {
+    const ObtenerPokemon = async function (id: number) {
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+      const data = await response.json();
+      const pokemonObtenido = Pokemon.FromJson(data);
+      setPokemon(pokemonObtenido);
+    };
+    ObtenerPokemon(id);
+  }, []);
+
+  if (!pokemon) return <h2>Cargando...</h2>;
   return (
     <article className="poke-carta">
-      <h2>{pokeEjemplo.Id}</h2>
-      <img src={pokeEjemplo.SpriteURL} />
-      <h3>{pokeEjemplo.Nombre}</h3>
+      <h2>{pokemon.Id}</h2>
+      <img src={pokemon.SpriteURL} />
+      <h3>{pokemon.Nombre}</h3>
       <>
-        {pokeEjemplo.Tipos.map((tipo) => {
+        {pokemon.Tipos.map((tipo) => {
           return <h4>{tipo}</h4>;
         })}
       </>
