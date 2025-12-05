@@ -21,7 +21,7 @@ function App() {
         <option value={493}>Arceus</option>
         <option value={6}>Charizard</option>
       </select>
-      <PokeCarta id={selectedPokemonId} />;
+      <PokeCarta id={selectedPokemonId} />
     </>
   );
 }
